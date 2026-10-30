@@ -1,0 +1,60 @@
+{
+  "name": "deal-death-launcher",
+  "version": "1.3.6",
+  "description": "DEAL DEATH Minecraft Launcher",
+  "author": "DEAL DEATH",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "clean:dist": "node clean-dist.js",
+    "build": "node clean-dist.js && electron-builder && node clean-dist.js"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.16",
+    "graceful-fs": "^4.2.11",
+    "minecraft-java-core": "^4.2.9"
+  },
+  "devDependencies": {
+    "electron": "^31.0.0",
+    "electron-builder": "^26.18.0"
+  },
+  "build": {
+    "appId": "com.dealdeath.launcher",
+    "productName": "DEAL DEATH",
+    "directories": {
+      "output": "dist",
+      "buildResources": "assets"
+    },
+    "files": [
+      "main.js",
+      "badge.js",
+      "preload.js",
+      "app.js",
+      "index.html",
+      "styles.css",
+      "assets/**/*",
+      "package.json"
+    ],
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/minecraft-java-core/**"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "DEAL DEATH"
+    }
+  }
+}
